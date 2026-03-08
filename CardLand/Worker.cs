@@ -1,3 +1,5 @@
+using CardLand.Services.TerminalsParsingService;
+
 namespace CardLand
 {
     public class Worker : BackgroundService
@@ -13,6 +15,20 @@ namespace CardLand
         {
             while (!stoppingToken.IsCancellationRequested)
             {
+                try
+                {
+                    var data = await TerminalsParsingService.Parse();
+
+                }
+                catch(Exception ex)
+                {
+
+                }
+                finally
+                {
+
+                }
+
                 if (_logger.IsEnabled(LogLevel.Information))
                 {
                     _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
