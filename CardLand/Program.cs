@@ -13,9 +13,14 @@ namespace CardLand
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile(Consts.CONFIG_FILE)
             .Build();
+            
+            builder.Logging.AddConsole();
+            builder.Logging.AddDebug();
+
 
             builder.Services.AddDbContext<DellinDictionaryDbContext>(options =>
-            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+            );
 
             builder.Services.AddHostedService<Worker>();
 
