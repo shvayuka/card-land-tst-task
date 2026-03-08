@@ -11,7 +11,7 @@ namespace CardLand.Models
     {
         public int Id { get; set; }
         public string? Code { get; set; }
-        public int CityCode { get; set; }
+        public string CityCode { get; set; }
         public string? Uuid { get; set; }
         public OfficeType? Type { get; set; }
         public string CountryCode { get; set; }

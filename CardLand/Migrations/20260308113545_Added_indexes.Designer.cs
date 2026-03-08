@@ -2,6 +2,7 @@
 using CardLand.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CardLand.Migrations
 {
     [DbContext(typeof(DellinDictionaryDbContext))]
-    partial class DellinDictionaryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260308113545_Added_indexes")]
+    partial class Added_indexes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,9 +44,8 @@ namespace CardLand.Migrations
                     b.Property<string>("AddressStreet")
                         .HasColumnType("text");
 
-                    b.Property<string>("CityCode")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("CityCode")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Code")
                         .HasColumnType("text");

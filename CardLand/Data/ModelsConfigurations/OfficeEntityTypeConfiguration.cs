@@ -46,6 +46,9 @@ namespace CardLand.Data.ModelsConfigurations
 
                 pb.Property(p => p.Additional);
             });
+
+            builder.HasIndex(o => o.CountryCode);
+            builder.HasIndex(o => o.AddressCity);
         }
     }
 }
