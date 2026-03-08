@@ -8,6 +8,11 @@ namespace CardLand.Data
     {
         public DbSet<Office> Offices { get; set; }
 
+        public DellinDictionaryDbContext(DbContextOptions<DellinDictionaryDbContext> options)
+        : base(options)
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

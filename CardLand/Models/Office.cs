@@ -22,7 +22,8 @@ namespace CardLand.Models
         public string? AddressHouseNumber { get; set; }
         public int? AddressApartment { get; set; }
         public string WorkTime { get; set; }
-        public Phone Phones { get; set; }
+        public ICollection<Phone> Phones { get; set; } = new List<Phone>();
+
         public Office() 
         { 
         

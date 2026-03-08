@@ -10,6 +10,7 @@
 
         public string? Additional { get; set; }
 
-        public Office Office { get; set; }
+        //Не нужно, учитывая Owning и доступ через Office. Закомментировано исключительно для разъяснения
+        //public Office Office { get; set; }
     }
 }
