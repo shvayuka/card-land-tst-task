@@ -9,6 +9,7 @@ namespace CardLand
     {
         private readonly ILogger<Worker> _logger; 
         private readonly IServiceProvider _serviceProvider;
+        private bool _alreadyDoneForToday = false;
 
         public Worker(ILogger<Worker> logger, IServiceProvider serviceProvider)
         {
@@ -22,6 +23,11 @@ namespace CardLand
             {
                 try
                 {
+                    while (!ItIsTimeToWork())
+                        //Минутку подождем-с
+                        await Task.Delay(1000 * 60, stoppingToken);
+
+
                     var offices = await TerminalsParsingService.Parse();
                     _logger.LogInformation($"{DateTime.Now} INFO: Загружено {offices.Count()} терминалов из JSON");
 
@@ -49,11 +55,20 @@ namespace CardLand
                 }
                 finally
                 {
-
+                    _alreadyDoneForToday = true;
                 }
-
-                await Task.Delay(10000, stoppingToken);
             }
+        }
+
+        private bool ItIsTimeToWork()
+        {
+            int workTimeHour = 23; //Потому что 2:00 МСК это по идее 23:00 предыдущего дня UTC
+            if (DateTime.UtcNow.Hour == workTimeHour && !_alreadyDoneForToday)
+                return true;
+            else if (DateTime.UtcNow.Hour != workTimeHour && _alreadyDoneForToday)
+                _alreadyDoneForToday = false;
+
+            return false;
         }
     }
 }
