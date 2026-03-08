@@ -16,6 +16,7 @@ namespace CardLand.Data.ModelsConfigurations
             builder.ToTable("Offices");
 
             builder.HasKey(o => o.Id);
+            builder.Property(o => o.Id).ValueGeneratedNever();
 
             builder.Property(o => o.Code);
             builder.Property(o => o.Uuid);

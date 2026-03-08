@@ -2,6 +2,7 @@
 using CardLand.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CardLand.Migrations
 {
     [DbContext(typeof(DellinDictionaryDbContext))]
-    partial class DellinDictionaryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260308091351_Office_Id_GenerationNever")]
+    partial class Office_Id_GenerationNever
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
